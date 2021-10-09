@@ -17,7 +17,7 @@ public class AutorDao {
 	
 	@PostConstruct
 	void aposCriacao() {
-		System.out.println("AutorDao foi criado.");
+		System.out.println("[INFO Construcao] AutorDao carregado.");
 	}
 
 	public void salva(Autor autor) {
