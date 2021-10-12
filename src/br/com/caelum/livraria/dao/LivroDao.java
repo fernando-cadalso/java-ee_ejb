@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import br.com.caelum.livraria.modelo.Livro;
 
@@ -24,6 +25,13 @@ public class LivroDao {
 	
 	public List<Livro> todosLivros() {
 		return em.createQuery("select a from Livro a", Livro.class).getResultList();
+	}
+
+	public List<Livro> livrosPeloNome(String nome) {
+
+		TypedQuery<Livro> query = em.createQuery("select l from Livro l where l.titulo like :pLivro", Livro.class);
+		query.setParameter("pLivro", "%" + nome + "%");
+		return query.getResultList();
 	}
 	
 }
